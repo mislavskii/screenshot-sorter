@@ -1,3 +1,8 @@
 .ipynb_checkpoints
 screenshot_files/
 Captures/
+*.pptx
+/csv/
+/.idea/
+*.png
+/arx/

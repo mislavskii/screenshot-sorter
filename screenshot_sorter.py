@@ -33,7 +33,7 @@ class Screens2PPTX:
     def populate_title(self):
         title_slide = self.prs.slides[0]
         title_shape = title_slide.shapes.title
-        logging.info(f'setting title to {self.title}')
+        logging.info(f'setting title to "{self.title}"')
         title_shape.text = self.title
 
     def build_title_slide(self):
@@ -56,7 +56,7 @@ class Screens2PPTX:
         blank_slide_layout = prs.slide_layouts[6]
         if not keystring:
             keystring = self.title
-        logging.info(f'about to pull images with filtering on {keystring}')
+        logging.info(f'about to pull images with filtering on "{keystring}"')
         image_files = [file for file in os.scandir(self.image_dir) if self.contains_all(
             file.name, keystring.split(' ')) and file.name.endswith('.png')]  # TODO: tokenize rather than split?
         image_files.sort(key=lambda x: x.stat().st_ctime)

@@ -40,7 +40,8 @@ class Screens2PPTX:
         logging.info('building the title slide')
         self.populate_title()
         logging.info('saving the presentation')
-        self.prs.save(self.pptx_file)
+        # self.prs.save(self.pptx_file)
+        self.save_presentation()
 
     def pull_images(self):
         prs = self.prs
@@ -67,5 +68,14 @@ class Screens2PPTX:
             print('.', end="")
         print()
         logging.info('done pulling images.')
-        prs.save(self.pptx_file)
+        self.save_presentation()
+
+    def save_presentation(self):
+        prs = self.prs
+        try:
+            prs.save(self.pptx_file)
+        except PermissionError:
+            logging.error('Permission denied.')
+            input('Please close the presentation file to continue. Press Enter when ready.')
+            prs.save(self.pptx_file)
         logging.info('presentation file saved.')
